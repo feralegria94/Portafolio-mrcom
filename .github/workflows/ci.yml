@@ -13,11 +13,4 @@ jobs:
         with:
           node-version: "20"
       - name: Lint Markdown
-        run: |
-          npx markdownlint-cli2 "README.md" "CURRICULUM.md" --config '{"MD013": false, "MD033": false, "MD041": false}'
-      - name: Check links
-        run: |
-          grep -oP 'https?://[^\s\)\]]+' README.md | sort -u | while read url; do
-            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 10 "$url" || echo "000")
-            echo "$code $url"
-          done
+        run: npx markdownlint-cli2 "README.md" "CURRICULUM.md"
